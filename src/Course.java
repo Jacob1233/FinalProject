@@ -1,11 +1,13 @@
+import java.util.List;
 import java.util.UUID;
 
 public class Course {
 	public String courseName;
 	public UUID courseID;
 	public Teacher instructor;
+	public List<Student> roster;
 	
-	public Course(String courseName, Teacher instructor) {
+	public Course(String courseName, Teacher instructor, List<Student> roster) {
 		this.courseName = courseName;
 		this.instructor = instructor;
 		makeID();
