@@ -1,5 +1,5 @@
 
-public class AbstractPerson {
+public abstract class AbstractPerson {
 	
 	public String firstName;
 	public String lastName;
