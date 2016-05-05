@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 	static Scanner input = new Scanner(System.in);
+	
 	public static void main(String[] args) {
 		List<AbstractPerson> people = new ArrayList<AbstractPerson>();
 
@@ -24,6 +25,29 @@ public class Main {
 	
 	System.out.print(c.getCourseName());
 		
+	}
+	
+	public static void runMenu(){
+		
+	}
+	
+	public static void mainMenu(){
+		
+	}
+	
+	public static void makeStudent(){
+		
+	}
+	
+	public static void makeTeacher(){
+		
+	}
+	
+	public static boolean checkEscape(String str){
+		if ( str.toLowerCase().equals("@quit") ){
+			return true;
+		}
+		return false;
 	}
 
 }
