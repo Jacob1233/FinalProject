@@ -16,7 +16,13 @@ public class Main {
 		people.add(j);
 	}
 	
-	System.out.print(people);
+	Teacher k = new Teacher("joe", "harry");
+	
+	Course c = new Course("course one", k, people);
+	
+	
+	
+	System.out.print(c.getCourseName());
 		
 	}
 

@@ -8,7 +8,7 @@ public class Course {
 	private Teacher instructor;
 	private List<Student> roster = new ArrayList<Student>();
 	
-	public Course(String courseName, Teacher instructor, List<Student> roster) {
+	public Course(String courseName, Teacher instructor, List<AbstractPerson> roster) {
 		this.courseName = courseName;
 		this.instructor = instructor;
 		makeID();
