@@ -26,5 +26,8 @@ public class Course {
 	public Teacher getinstructor(){
 		return instructor;
 	}
+	public List<Student> getRoster(){
+		return roster;
+	}
 
 }
