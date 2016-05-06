@@ -10,6 +10,12 @@ public class Main {
 	static List<Course> courses = new ArrayList<Course>();
 
 	public static void main(String[] args) {
+		
+		createStudents();
+		createTeacher();
+		createCourse();
+		
+		printCourses(courses);
 
 		input.close();
 	}
