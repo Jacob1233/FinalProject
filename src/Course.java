@@ -1,33 +1,48 @@
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class Course {
-	private String courseName;
-	private UUID courseID;
-	private Teacher instructor;
-	private List<Student> roster = new ArrayList<Student>();
+	private String name;
+	private List<Student> roster;
+	private Teacher teacher;
 	
-	public Course(String courseName, Teacher instructor, List<AbstractPerson> roster) {
-		this.courseName = courseName;
-		this.instructor = instructor;
-		makeID();
+	public Course(String name, List<Student> roster, Teacher teacher) {
+		this.name = name;
+		this.roster = roster;
+		this.teacher = teacher;
+		
+		for (int i = 0; i < roster.size(); i++) {
+			roster.get(i).addCourse(this);
+		}
+		
+		teacher.addCourse(this);
 	}
 	
-	private void makeID() {
-		courseID = UUID.randomUUID();
+	public String getName() {
+		return name;
 	}
-	public String getCourseName(){
-		return courseName; 
-	}
-	public UUID getCourseID(){
-		return courseID;
-	}
-	public Teacher getinstructor(){
-		return instructor;
-	}
-	public List<Student> getRoster(){
+	
+	public List<Student> getRoster() {
 		return roster;
 	}
-
+	
+	public Teacher getTeacher() {
+		return teacher;
+	}
+	
+	public void addStudent(Student student) {
+		roster.add(student);
+		student.addCourse(this);
+	}
+	
+	public int compareTo(Course course) {
+		Course compareTo = (Course)course;
+		if (this.name.compareToIgnoreCase(compareTo.name) < 0) {
+			return -1;
+		} else if (this.name.compareToIgnoreCase(compareTo.name) > 0) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+	
 }

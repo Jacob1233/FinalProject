@@ -1,53 +1,35 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-	static Scanner input = new Scanner(System.in);
-	
-	public static void main(String[] args) {
-		List<AbstractPerson> people = new ArrayList<AbstractPerson>();
 
-	for (int i = 0;i < 2; i++) {
-		System.out.print("First name: ");
-		String fname = input.next();
-		System.out.print("Last name: ");
-		String lname = input.next();
-		Student j = new Student(lname, fname);
-		people.add(j);
-	}
-	
-	Teacher k = new Teacher("joe", "harry");
-	
-	Course c = new Course("course one", k, people);
-	
-	
-	
-	System.out.print(c.getCourseName());
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		List<Student> students = new ArrayList<Student>();
 		
-	}
-	
-	public static void runMenu(){
-		
-	}
-	
-	public static void mainMenu(){
-		
-	}
-	
-	public static void makeStudent(){
-		
-	}
-	
-	public static void makeTeacher(){
-		
-	}
-	
-	public static boolean checkEscape(String str){
-		if ( str.toLowerCase().equals("@quit") ){
-			return true;
+		for (int i = 0; i < 3; i++) {
+			System.out.print("Enter first name: ");
+			String f = input.next();
+			System.out.print("Enter last name: ");
+			String l = input.next();
+			Student s = new Student(f, l);
+			students.add(s);
 		}
-		return false;
+		
+		Collections.sort(students);
+		
+		for (int i = 0; i < students.size(); i++) {
+			System.out.print(students.get(i).firstName);
+			System.out.print(" ");
+			System.out.print(students.get(i).lastName);
+			System.out.print(" ");
+			System.out.print(students.get(i).getID());
+			System.out.print("\n");
+		}
+		
+		input.close();
 	}
 
 }

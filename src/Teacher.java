@@ -1,15 +1,26 @@
+import java.util.List;
 import java.util.UUID;
 
 public class Teacher extends AbstractPerson {
-	public UUID teacherID;
-
-	public Teacher(String lastName, String firstName) {
-		super(lastName, firstName);
-		makeID();
+	private UUID teacherID;
+	private List<Course> courses;
+	
+	public Teacher(String firstName, String lastName) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.teacherID = UUID.randomUUID();
 	}
 	
-	private void makeID() {
-		teacherID = UUID.randomUUID();
+	public UUID getID(){
+		return teacherID;
+	}
+	
+	public List<Course> getCourses() {
+		return courses;
+	}
+	
+	public void addCourse(Course course) {
+		courses.add(course);
 	}
 
 }
