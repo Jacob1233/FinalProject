@@ -37,8 +37,8 @@ public class Main {
 	}
 
 	public static void printCourses(List<Course> courses) {
-		for (int i = 0; i < teachers.size(); i++) {
-			System.out.print(courses.get(i).getName());
+		for (int i = 0; i < courses.size(); i++) {
+			System.out.println(courses.get(i).getName());
 		}
 		System.out.print("\n");
 	}
@@ -129,7 +129,8 @@ public class Main {
 			System.out.println("2 - Create a Teacher");
 			System.out.println("3 - Create a Class");
 			System.out.println("4 - View Students");
-			System.out.println("5 - View Course");
+			System.out.println("5 - View Teachers");
+			System.out.println("6 - View Courses");
 			int choice = input.nextInt();
 
 			switch (choice) {
@@ -146,6 +147,9 @@ public class Main {
 				printStudents(students);
 				break;
 			case 5:
+				printTeachers(teachers);
+				break;
+			case 6:
 				printCourses(courses);
 				break;
 			default:

@@ -10,11 +10,11 @@ public class Course {
 		this.roster = roster;
 		this.teacher = teacher;
 		
-		for (int i = 0; i < roster.size(); i++) {
-			roster.get(i).addCourse(this);
-		}
-		
-		teacher.addCourse(this);
+//		for (int i = 0; i < roster.size(); i++) {
+//			roster.get(i).addCourse(this);
+//		}
+//		
+//		teacher.addCourse(this);
 	}
 	
 	public String getName() {
@@ -31,7 +31,7 @@ public class Course {
 	
 	public void addStudent(Student student) {
 		roster.add(student);
-		student.addCourse(this);
+//		student.addCourse(this);
 	}
 	
 	public int compareTo(Course course) {

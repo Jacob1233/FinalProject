@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public class Student extends AbstractPerson{
 	private UUID studentID;
-	private List<Course> courses =  new ArrayList<Course>();
+//	private List<Course> courses =  new ArrayList<Course>();
 	
 	public Student(String firstName, String lastName) {
 		this.firstName = firstName;
@@ -16,12 +16,12 @@ public class Student extends AbstractPerson{
 		return studentID;
 	}
 	
-	public List<Course> getCourses() {
-		return courses;
-	}
+//	public List<Course> getCourses() {
+//		return courses;
+//	}
 	
-	public void addCourse(Course course) {
-		courses.add(course);
-	}
+//	public void addCourse(Course course) {
+//		courses.add(course);
+//	}
 
 }
