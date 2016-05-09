@@ -10,12 +10,8 @@ public class Main {
 	static List<Course> courses = new ArrayList<Course>();
 
 	public static void main(String[] args) {
-		
-		createStudents();
-		createTeacher();
-		createCourse();
-		
-		printCourses(courses);
+		start();
+		menu();
 
 		input.close();
 	}
@@ -39,7 +35,7 @@ public class Main {
 		}
 		System.out.print("\n");
 	}
-	
+
 	public static void printCourses(List<Course> courses) {
 		for (int i = 0; i < teachers.size(); i++) {
 			System.out.print(courses.get(i).getName());
@@ -100,7 +96,7 @@ public class Main {
 				}
 			}
 		}
-		
+
 		System.out.println("Pick a teacher last name to add: ");
 		printTeachers(availableTeachers);
 		String t = input.next();
@@ -113,33 +109,50 @@ public class Main {
 
 		System.out.print("Enter a name for the course: ");
 		String cn = input.next();
-		
+
 		Course c = new Course(cn, chosenStudents, chosenTeacher);
 		courses.add(c);
 	}
-	
-public static void start() {
+
+	public static void start() {
 		System.out.println("School System 1.0");
 		System.out.println("Micheal Uwaeke & Jacob Wilson");
-		System.out.println("\n");
+		System.out.println("");
 	}
-	
-	public static void menu() {		
+
+	public static void menu() {
 		boolean stop = false;
-		
+
 		while (stop == false) {
 			System.out.println("What would you like to do?");
 			System.out.println("1 - Create a Student");
 			System.out.println("2 - Create a Teacher");
 			System.out.println("3 - Create a Class");
+			System.out.println("4 - View Students");
+			System.out.println("5 - View Course");
 			int choice = input.nextInt();
-			
+
 			switch (choice) {
-			case 1: createStudents(); break;
-			case 2: createTeacher(); break;
-			case 3: createCourse(); break;
+			case 1:
+				createStudents();
+				break;
+			case 2:
+				createTeacher();
+				break;
+			case 3:
+				createCourse();
+				break;
+			case 4:
+				printStudents(students);
+				break;
+			case 5:
+				printCourses(courses);
+				break;
+			default:
+				System.out.println("Not a valid choice.");
+				break;
 			}
-			
+
 		}
 	}
 
