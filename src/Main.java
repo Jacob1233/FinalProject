@@ -10,154 +10,181 @@ public class Main {
 	static List<Course> courses = new ArrayList<Course>();
 
 	public static void main(String[] args) {
-		start();
-		menu();
-
-		input.close();
-	}
-
-	public static void printStudents(List<Student> students) {
-		for (int i = 0; i < students.size(); i++) {
-			System.out.print(students.get(i).firstName);
-			System.out.print(" ");
-			System.out.print(students.get(i).lastName);
-			System.out.print(", ");
-		}
-		System.out.print("\n");
-	}
-
-	public static void printTeachers(List<Teacher> teachers) {
-		for (int i = 0; i < teachers.size(); i++) {
-			System.out.print(teachers.get(i).firstName);
-			System.out.print(" ");
-			System.out.print(teachers.get(i).lastName);
-			System.out.print(", ");
-		}
-		System.out.print("\n");
-	}
-
-	public static void printCourses(List<Course> courses) {
-		for (int i = 0; i < courses.size(); i++) {
-			System.out.println(courses.get(i).getName());
-		}
-		System.out.print("\n");
-	}
-
-	public static void createStudents() {
-		System.out.print("How many students you like to enter? ");
-		int n = input.nextInt();
-
-		for (int i = 0; i < n; i++) {
-			System.out.println("Enter student " + (i + 1) + " info:");
-			System.out.print("Enter the first name: ");
-			String f = input.next();
-			System.out.print("Enter the last name: ");
-			String l = input.next();
-			Student s = new Student(f, l);
-			students.add(s);
-		}
-	}
-
-	public static void createTeacher() {
-		System.out.print("How many teachers you like to enter? ");
-		int n = input.nextInt();
-
-		for (int i = 0; i < n; i++) {
-			System.out.println("Enter teacher " + (i + 1) + " info:");
-			System.out.print("Enter the first name: ");
-			String f = input.next();
-			System.out.print("Enter the last name: ");
-			String l = input.next();
-			Teacher s = new Teacher(f, l);
-			teachers.add(s);
-		}
-	}
-
-	public static void createCourse() {
-		List<Student> availableStudents = students;
-		List<Student> chosenStudents = new ArrayList<Student>();
-		List<Teacher> availableTeachers = teachers;
-		Teacher chosenTeacher = null;
-
-		System.out.print("How many students would you like to add? ");
-		int n = input.nextInt();
-		for (int i = 0; i < n; i++) {
-			System.out.println("Available Students: ");
-			printStudents(availableStudents);
-			System.out.println("Choosen Students:");
-			printStudents(chosenStudents);
-
-			System.out.println("Enter a student last name to add:");
-			String s = input.next();
-			for (int j = 0; j < availableStudents.size(); j++) {
-				if (s.equals(availableStudents.get(j).lastName)) {
-					chosenStudents.add(availableStudents.get(j));
-					availableStudents.remove(j);
-				}
-			}
-		}
-
-		System.out.println("Pick a teacher last name to add: ");
-		printTeachers(availableTeachers);
-		String t = input.next();
-		for (int j = 0; j < availableTeachers.size(); j++) {
-			if (t.equals(availableTeachers.get(j).lastName)) {
-				chosenTeacher = availableTeachers.get(j);
-				availableTeachers.remove(j);
-			}
-		}
-
-		System.out.print("Enter a name for the course: ");
-		String cn = input.next();
-
-		Course c = new Course(cn, chosenStudents, chosenTeacher);
-		courses.add(c);
-	}
-
-	public static void start() {
 		System.out.println("School System 1.0");
-		System.out.println("Micheal Uwaeke & Jacob Wilson");
-		System.out.println("");
-	}
+		System.out.println("Micheal Uwaeke & Jacob Wilson 2016");
+		System.out.println("Type '@quit' anytime to exit.");
 
-	public static void menu() {
-		boolean stop = false;
+		while (true) {
+			System.out.println("\nMain menu: \n");
+			System.out.println("Choice 1: Create a Student");
+			System.out.println("Choice 2: Create a Teacher");
+			System.out.println("Choice 3: Create a Course");
+			System.out.println("Choice 4: View Student Details");
+			System.out.println("Choice 5: View Teacher Details");
+			System.out.println("Choice 6: View Course Details \n");
+			System.out.print("Entry: ");
+			String entry = input.nextLine();
 
-		while (stop == false) {
-			System.out.println("What would you like to do?");
-			System.out.println("1 - Create a Student");
-			System.out.println("2 - Create a Teacher");
-			System.out.println("3 - Create a Class");
-			System.out.println("4 - View Students");
-			System.out.println("5 - View Teachers");
-			System.out.println("6 - View Courses");
-			int choice = input.nextInt();
+			checkEsc(entry);
 
-			switch (choice) {
+			int x;
+
+			try {
+				x = Integer.parseInt(entry);
+			} catch (Exception e) {
+				x = 0;
+			}
+
+			switch (x) {
 			case 1:
-				createStudents();
+				createStudent();
 				break;
 			case 2:
 				createTeacher();
 				break;
-			case 3:
+			case 3: 
 				createCourse();
 				break;
 			case 4:
-				printStudents(students);
+				viewStudentDetails();
 				break;
 			case 5:
-				printTeachers(teachers);
+				viewTeacherDetails();
 				break;
 			case 6:
-				printCourses(courses);
+				viewCourseDetails();
 				break;
 			default:
-				System.out.println("Not a valid choice.");
+				System.out.println("Not a valid choice. \n");
 				break;
 			}
+			
 
 		}
+
 	}
 
+	public static void checkEsc(String txt) {
+		if (txt.equals("@quit")) {
+			System.exit(0);
+		}
+	}
+	
+	public static void createStudent() {
+		System.out.println("Create a student: \n");
+		
+		System.out.println("Enter the student's first name. \n");
+		System.out.print("Entry: ");
+		String fname = input.nextLine();
+		checkEsc(fname);
+		
+		System.out.println("Enter the student's last name. \n");
+		System.out.print("Entry: ");
+		String lname = input.nextLine();
+		checkEsc(fname);
+		
+		Student s = new Student(fname, lname);
+		students.add(s);
+		Collections.sort(students);
+	}
+	
+	public static void createTeacher() {
+		System.out.println("Create a Teacher: \n");
+		
+		System.out.println("Enter the teacher's first name. \n");
+		System.out.print("Entry: ");
+		String fname = input.nextLine();
+		checkEsc(fname);
+		
+		System.out.println("Enter the teacher's last name. \n");
+		System.out.print("Entry: ");
+		String lname = input.nextLine();
+		checkEsc(fname);
+		
+		Teacher t = new Teacher(fname, lname);
+		teachers.add(t);
+		Collections.sort(teachers);
+	}
+	
+	public static void viewStudentDetails() {
+		System.out.println("View Student Details \n");
+		
+		for(int i = 0; i < students.size(); i++) {
+			System.out.println(students.get(i).firstName + " " + students.get(i).lastName + ": " + students.get(i).getID());
+		}
+		
+	}
+	
+	public static void viewTeacherDetails() {
+		System.out.println("View Student Details \n");
+		
+		for(int i = 0; i < teachers.size(); i++) {
+			System.out.println(teachers.get(i).firstName + " " + teachers.get(i).lastName + ": " + teachers.get(i).getID());
+		}
+		
+	}
+	
+	public static void createCourse() {
+		List<Student> roster = new ArrayList<Student>();
+		Teacher t = null;
+		System.out.println("Create a course \n");
+		System.out.println("How many students are in this course?");
+		System.out.print("Entry: ");
+		String n = input.nextLine();
+		
+		checkEsc(n);
+
+		int x;
+
+		try {
+			x = Integer.parseInt(n);
+		} catch (Exception e) {
+			x = 0;
+		}
+		
+		
+		
+		for(int i = 0; i < x; i++) {
+			System.out.println("Enter Student " + i + "'s Last Name:");
+			System.out.print("Entry: ");
+			String l = input.nextLine();
+			checkEsc(l);
+			
+			for(int k = 0; k < students.size(); k++) {
+				if (students.get(k).lastName.equals(l)) {
+					roster.add(students.get(k));
+				}
+			}
+		}
+		
+		System.out.println("Enter a Teacher's Last Name:");
+		System.out.print("Entry: ");
+		String l = input.nextLine();
+		checkEsc(l);
+		for(int i = 0; i < teachers.size(); i++) {
+			if (teachers.get(i).lastName.equals(l)) {
+				t = teachers.get(i);
+			}
+		}
+		
+		System.out.println("Enter a name for the course:");
+		System.out.print("Entry: ");
+		String m = input.nextLine();
+		checkEsc(m);
+		
+		try {
+			Course y = new Course(m, roster, t);
+			courses.add(y);
+		} catch (Exception e) {
+			System.out.println("The Course was unable to be made. ");
+		}
+		
+	}
+	
+	public static void viewCourseDetails() {
+		System.out.println("View Course Details: \n");
+		for(int i = 0; i < courses.size(); i++) {
+			System.out.println(courses.get(i).getName() + " has " + courses.get(i).getRoster().size() + " students.");
+		}
+	}
 }
